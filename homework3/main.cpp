@@ -31,6 +31,7 @@ int16_t DataXYZ[3] = {0};
 int16_t reference[3];
 int angle = 0;
 bool flag = true;
+int num = 1;
 
 uLCD_4DGL uLCD(D1, D0, D2);
 DigitalOut myled1(LED1);
@@ -375,10 +376,10 @@ void mqtt() {
     while (1) {
         if (closed) break;
         ThisThread::sleep_for(100ms);
-        if ((angle > threshold_angel) && (flag == true)) {
+        if ((angle > threshold_angel) && (flag == false)) {
             printf("Yes\n");
             mqtt_queue.call(&publish_message, &client);
-            flag = false;
+            flag = true;
         }
     }
     printf("Ready to close MQTT Network......\n");
@@ -425,6 +426,14 @@ void tilt(){
             // uLCD.color(RED);
             uLCD.locate(1,2);
             uLCD.printf("%3d",angle);
+            if(angle > threshold_angel){
+                printf("angle #%d: %d\n",num,angle);
+                num++;
+                if(num > 10) {
+                    flag = false;
+                    num = 1;
+                }
+            }
             ThisThread::sleep_for(100ms);
         }
     }
