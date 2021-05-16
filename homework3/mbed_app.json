@@ -2,11 +2,11 @@
     "config": {
     "wifi-ssid": {
             "help": "WiFi SSID",
-            "value": "\"G9B_WiFi\""
+            "value": "\"Me\""
     },
     "wifi-password": {
             "help": "WiFi Password",
-            "value": "\"88888888\""
+            "value": "\"123456789\""
     }
     },
     "target_overrides": {

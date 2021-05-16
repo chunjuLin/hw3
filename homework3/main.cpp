@@ -94,8 +94,8 @@ int main() {
     }
 }
 void tilt_angel(Arguments *in, Reply *out) {
-    char buffer[200], outbuf[256];
-    char strings[20];
+    //char buffer[200], outbuf[256];
+    //char strings[20];
     x = in->getArg<int>();
     if(x == 1){
         stop_tilt = 0;
@@ -117,8 +117,8 @@ void tilt_angel(Arguments *in, Reply *out) {
     }
 }
 void gesture_ui (Arguments *in, Reply *out) {
-    char buffer[200], outbuf[256];
-    char strings[20];
+    //char buffer[200], outbuf[256];
+    //char strings[20];
     x = in->getArg<int>();
     if(x == 1){
         stop_gesture = 0;
@@ -266,7 +266,7 @@ void ML(){
             should_clear_buffer = gesture_index < label_num;
 
             if (gesture_index < label_num){
-                if(gesture_index == 0 && threshold_angel < 40) threshold_angel += 5;
+                if(gesture_index == 0 && threshold_angel < 45) threshold_angel += 5;
                 else if(gesture_index == 1 && threshold_angel > 30)threshold_angel -= 5;
             }
             ThisThread::sleep_for(100ms);
@@ -340,7 +340,7 @@ void mqtt() {
     MQTT::Client<MQTTNetwork, Countdown> client(mqttNetwork);
 
     //TODO: revise host to your IP
-    const char* host = "192.168.31.241";
+    const char* host = "172.20.10.5";
     printf("Connecting to TCP network...\r\n");
 
     SocketAddress sockAddr;
